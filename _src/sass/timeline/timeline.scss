@@ -1,0 +1,227 @@
+$section-colors: $gray-light $link-color $gray $gray-dark lighten($gray-dark, 20%) $brand-primary;
+$title-colors: $gray-darker $gray-darker $gray-lighter $gray-lighter $gray-lighter $gray-lighter;
+
+$timeline-height: 500px;
+$scroll-track-height: 80px;
+
+.timeline {
+  margin-top: -80px;
+  background: lighten($gray-light, 10%);
+  position: relative;
+  @media (max-width: $screen-xs) {
+    margin-top: -20px;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 10px;
+    background: $gray;
+  }
+}
+.timeline-shadow {
+  height: $timeline-height;
+}
+.timeline-scroll-pane {
+  position: relative;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  height: $timeline-height;
+  @include hideScrollBar();
+  @media (max-width: $screen-md) {
+    overflow-x: auto;
+  }
+}
+.timeline-container {
+  width: 1000000px;
+  position: absolute;
+}
+.timeline-item {
+  float: left;
+  width: auto;
+  height: 100%;
+  margin: 30px 40px 30px 10px;
+}
+.timeline-section {
+  float: left;
+  height: 100%;
+  &:first-child {
+    border-left: 1px solid $gray;
+  }
+  &:last-child {
+    border-right: 1px solid $gray;
+  }
+}
+.timeline-item-description {
+  float: left;
+  width: 320px;
+  margin: 0 40px 0 15px;
+}
+.timeline-item-image {
+  position: relative;
+  float: left;
+  width: 490px;
+  height: 340px;
+  margin: 5px 0;
+  .image-container {
+    background: $body-bg center center no-repeat;
+    background-size: cover;
+    display: block;
+    position: relative;
+    width: 490px;
+    height: 300px;
+    overflow: hidden;
+    transition: box-shadow 0.28s cubic-bezier(0.4,0,0.2,1);
+    //@include drop-shadow($gray, 6px);
+    &:hover, &:focus {
+      box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    }
+    img {
+      opacity: 1;
+      @extend .responsive-img;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  span {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    width: 100%;
+  }
+}
+.timeline-scroll-track-container {
+  @extend .container;
+  margin-top: -$scroll-track-height;
+}
+.timeline-scroll-track {
+  @include noselect();
+  background: $brand-info;
+  height: $scroll-track-height;
+  position: relative;
+  bottom: 0;
+  margin: 0 15px;
+  padding: 0 15px;
+  .bar-container {
+    position: relative;
+    height: 100%;
+  }
+  .bar-bg {
+    width: 100%;
+    height: $scroll-track-height / 8;
+    background: transparent;
+    position: absolute;
+    top: ($scroll-track-height - 20px) / 2;
+    margin: -5px 0 0;
+  }
+  .bar-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: block;
+    float: left;
+    cursor: pointer;
+    color: $text-color;
+    &:hover, &:focus {
+      color: lighten($text-color, 40%);
+    }
+    .tooltip {
+      min-width: 150px;
+      top: -35px !important;
+      .tooltip-arrow {
+        border-top-color: $body-bg;
+      }
+      .tooltip-inner {
+        color: $gray-darker;
+        background: $body-bg;
+      }
+    }
+  }
+  .bar-section-text {
+    position: absolute;
+    display: block;
+    bottom: -25px;
+    width: 100%;
+    text-align: center;
+    line-height: 25px;
+    font-size: 12px;
+    @include text-ellipsis();
+  }
+  .bar-progress-control {
+    @include noselect();
+    $border-width: 4px;
+    $progress-control-height: $scroll-track-height - 20px;
+    cursor: pointer;
+    width: 12px;
+    height: $progress-control-height;
+    top: ($scroll-track-height - $progress-control-height)/2;
+    border: ($border-width/2) solid $body-bg;
+    background: rgba($brand-info, .2);
+    position: absolute;
+    &:after, &:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: $scroll-track-height / 8;
+      background: $body-bg;
+    }
+    &:before {
+      top: 0;
+      height: 5px;
+    }
+    &.autosize {
+      height: 12px;
+      top: 24px;
+      border: 1px solid $body-bg;
+
+      background: rgba($body-bg, .4);
+      &:after, &:before {
+        height: 1px;
+      }
+      transition: background .4s;
+      &:hover, &.dragged {
+        background: rgba($body-bg, 1);
+      }
+    }
+  }
+}
+
+.timeline-scroll-track .bar-section {
+  $index: 1;
+  @each $section in $section-colors {
+    &:nth-child(#{$index}) {
+      background-color: $section;
+    }
+    $index: $index + 1;
+  }
+}
+
+.timeline-section {
+  $index: 1;
+  @each $section in $section-colors {
+    &:nth-child(#{$index}) {
+      border-top: 10px solid $section;
+      border-left: 1px solid $section;
+      $title-color: nth($title-colors, $index);
+      .timeline-item.style1 {
+        @include timeline-style1($section, $title-color, $timeline-height, $scroll-track-height);
+      }
+      .timeline-item.style2 {
+        @include timeline-style2($section, $gray-darker, $timeline-height, $scroll-track-height);
+      }
+      .timeline-item.style3 {
+        @include timeline-style3($section, $gray-darker, $timeline-height, $scroll-track-height);
+      }
+      .timeline-item.style4 {
+        @include timeline-style4($section, $gray-darker, $timeline-height, $scroll-track-height);
+      }
+    }
+    $index: $index + 1;
+  }
+}
+

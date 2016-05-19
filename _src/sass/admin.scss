@@ -1,0 +1,127 @@
+@import "pen";
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+.editable-outline {
+  outline: 1px dotted gray;
+  outline-offset: 5px;
+}
+.editable-content {
+  position: relative;
+  .post-list-add-btn-container {
+    list-style: none;
+    &:before, &:after {
+      display: none !important;;
+    }
+  }
+  .post-list-add-btn {
+    background: none;
+    border: none;
+    color: grey;
+    transition: padding .4s;
+    text-align: left;
+    &:before, &:after {
+      display: none !important;
+    }
+    &:hover, &:focus {
+      color: black;
+      text-decoration: none;
+      outline: none;
+    }
+  }
+
+  .post-content-edit-btn {
+    @extend .noselect;
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    right: -30px;
+    top: -6px;
+    &.top {
+      right: -6px;
+      top: -28px;
+    }
+
+    &, &:hover, &:focus {
+      outline: none;
+    }
+
+    &:before {
+      @extend .noselect;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      outline: none;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+    }
+  }
+  .post-content-edit-btn.active {
+    display: block;
+    color: green;
+  }
+  .editable-content, .editable-list, .editable-menu, .editable-acf-list {
+    position: relative;
+  }
+  &:hover, &:focus {
+    .editable-content, .editable-list, .editable-menu, .editable-acf-list {
+      @extend .editable-outline;
+    }
+    .post-content-edit-btn {
+      display: block;
+      outline: none;
+    }
+  }
+  .is-editable {
+    @extend .editable-outline;
+  }
+  .is-editable {
+    &.editable-acf-list, &.editable-list, &.editable-menu {
+      .text {
+        @extend .editable-outline;
+        outline-offset: 2px;
+      }
+      .handle, .remove, .edit {
+        display: inline-block;
+        width: 0;
+        cursor: move;
+        overflow: hidden;
+        transition: width .4s, margin .4s;
+      }
+      .remove, .edit {
+        float: right;
+        cursor: pointer;
+      }
+      .remove {
+        display: none;
+      }
+      a.focused {
+        .remove {
+          display: block;
+        }
+      }
+      a:hover, a.focused {
+        .handle, .remove, .edit {
+          margin-right: 5px;
+          width: 16px;
+        }
+        .edit {
+          margin-left: 5px;
+        }
+        .remove {
+          margin-left: 10px;
+        }
+      }
+
+    }
+  }
+}

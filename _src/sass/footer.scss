@@ -1,0 +1,62 @@
+footer {
+  background: $brand-primary;
+  color: $body-bg;
+  padding: 15px 0;
+  .footer-item {
+    @extend .col-xs-12;
+    @extend .col-md-6;
+    @extend .col-sm-6;
+    margin: 15px 0;
+  }
+  hr {
+    border-top: 1px dotted $brand-primary;
+  }
+  h3 {
+    @extend .h4;
+  }
+  p {
+    color: $body-bg;
+  }
+  a {
+    color: $link-color;
+  }
+  a:hover {
+    color: $link-color;
+  }
+  .social-icons {
+    @media (min-width: $screen-sm) {
+      float: right;
+    }
+    .glyphicon {
+      margin-right: 5px;
+    }
+    .text {
+      display: none;
+    }
+  }
+  .form-inline {
+    label {
+      @extend .footer_text !optional;
+      font-weight: normal;
+    }
+    input.form-control {
+      background: $link-hover-color;
+      border-color: transparent;
+      width: auto;
+      width: calc(100% - 34px);
+      display: inline-block;
+    }
+    .btn-default {
+      border-color: transparent;
+      background: $brand-primary;
+      display: inline-block;
+      .text {
+        display: none;
+      }
+      &:hover, &:focus {
+        border-color: transparent;
+        background: darken($link-hover-color, 10%);
+      }
+    }
+  }
+}

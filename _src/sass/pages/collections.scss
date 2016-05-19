@@ -1,0 +1,44 @@
+.collection-item-image, .collection-item-description {
+  @extend .col-xs-max-6;
+  @extend .col-xs-6;
+}
+.collection-item {
+  display: block;
+  padding: 15px;
+  h2 {
+    @extend .h4;
+  }
+  img {
+    width: 100%;
+    margin: 0;
+    @extend .img-responsive;
+  }
+  transition: background .3s, box-shadow 1s;
+  &:hover, &:focus {
+    background: $body-bg;
+    //@include drop-shadow($gray, 2px);
+    .more {
+      color: $brand-primary;
+    }
+  }
+  .more {
+    color: $link-color;
+    &:hover, &:focus {
+      color: $brand-primary;
+    }
+  }
+
+}
+.collections {
+  .collection-item {
+    @media (max-width: $screen-xs) {
+      padding: 15px 0;
+      .collection-item-description {
+        padding: 0;
+      }
+      .collection-item-image {
+        padding-left: 0;
+      }
+    }
+  }
+}

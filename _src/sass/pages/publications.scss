@@ -1,0 +1,38 @@
+.publications {
+
+  .collection-item {
+    border-top: 1px solid $gray-light;
+    &:hover, &:focus {
+      background: none;
+    }
+    &:nth-child(odd) {
+      .collection-item-image {
+        padding-left: 0;
+        padding-right: 30px;
+      }
+      .collection-item-description {
+        padding-left: 0;
+      }
+    }
+    @media (min-width: $screen-xs-max) {
+      &:nth-child(even) {
+        border-left: 1px solid $gray-light;
+      }
+      &:nth-last-child(1), &:nth-last-child(2) {
+        border-bottom: 1px solid $gray-light;
+      }
+    }
+    @media (max-width: $screen-xs-max) {
+      .collection-item-image {
+        padding-left: 0;
+        padding-right: 30px;
+      }
+      .collection-item-description {
+        padding-left: 0;
+      }
+      &:last-child {
+        border-bottom: 1px solid $gray-light;
+      }
+    }
+  }
+}

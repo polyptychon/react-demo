@@ -1,0 +1,150 @@
+.home-fold-image {
+  position: relative;
+  background: transparent center center no-repeat;
+  background-size: cover;
+  height: 430px;
+  width: 100%;
+}
+.home-fold-image-description {
+  position: absolute;
+  @extend .col-lg-3;
+  @extend .col-md-4;
+  @extend .col-sm-4;
+  margin-bottom: 20px;
+  bottom: 0;
+  h2 {
+    color: $body-bg;
+  }
+}
+.home-fold-description-background {
+  background: rgba($brand-info, .8);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  p {
+    color: $body-bg;
+  }
+  .home-fold-image-description {
+    position: static;
+    @extend .col-sm-12;
+  }
+}
+.home-links {
+  background: $brand-info;
+}
+.home-links-item {
+  @extend .col-md-4;
+  display: table;
+  vertical-align: middle;
+  margin: 60px 0;
+  p {
+    color: $body-bg;
+    margin-bottom: 5px;
+  }
+}
+.home-links-item-image, .home-links-item-description {
+  @extend .col-md-6;
+  display: table-cell;
+  vertical-align: middle;
+  height: 100%;
+  float: none;
+  @media (max-width: $screen-md) {
+    height: auto !important;
+  }
+}
+.home-links-item-image {
+  //max-width: 175px;
+  padding: 0;
+  vertical-align: top;
+  img {
+    width: 100%;
+  }
+}
+.home-links-item-description {
+  @media (max-width: $screen-md) {
+    vertical-align: top;
+  }
+}
+.home-news {
+  @extend .row;
+  margin: 60px 0;
+  h2 {
+    @extend .col-xs-12;
+    @extend .h3;
+    margin: 0;
+  }
+}
+.home-news-item {
+  @extend .col-md-4;
+  margin-bottom: 30px;
+  h3 {
+    &, a {
+      @extend .h2;
+      @extend .more;
+    }
+  }
+  .category {
+    color: $text-color;
+    @extend .more;
+  }
+}
+.home-info {
+  @extend .row;
+  margin: 60px -15px 80px;
+}
+.home-info-group {
+  @extend .col-md-3;
+  &.medium {
+    @extend .col-md-6;
+    @media (min-width: $screen-md) {
+      padding: 0;
+    }
+  }
+}
+.home-info-item {
+  @extend .col-xs-12;
+  p {
+    margin: 0;
+  }
+  h3 {
+    margin-bottom: 15px;
+  }
+  img {
+    width: 100%;
+  }
+
+}
+.card {
+  position: relative;
+  margin-bottom: 15px;
+  display: block;
+}
+.card-description {
+  @extend .col-xs-12;
+  padding: 15px;
+  position: absolute;
+  background: $brand-info;
+  width: 100%;
+  bottom: 0;
+  &.primary {
+    background: rgba($brand-primary, .8);
+    color: $body-bg;
+    &:hover {
+      color: $link-color;
+    }
+  }
+  h3 {
+    margin: 0 0 5px;
+    color: $body-bg;
+  }
+}
+.newsletter {
+  input, button {
+    margin-bottom: 10px;
+    border: 1px solid $gray-light;
+    border-radius: 0;
+  }
+  button {
+    padding: 7px 25px;
+  }
+}

@@ -1,0 +1,18 @@
+.form-group {
+  position: relative;
+  margin-top: 15px;
+}
+
+.form-control + label {
+  position: absolute;
+  top: 5px;
+  margin-left: 15px;
+  color: $gray-light;
+  cursor: text;
+  transition: transform .4s, margin .4s;
+}
+.form-control:focus + label {
+  color: $gray-darker;
+  transform: translate(0, -30px) scale(0.8);
+  margin-left: 0;
+}

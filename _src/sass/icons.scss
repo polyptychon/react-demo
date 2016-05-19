@@ -1,0 +1,38 @@
+@import "sprites";
+
+$hover-icons: facebook twitter google-plus facebook-small twitter-small google-plus-small share download attachment-doc play-media play-media-small link-next link-previous link-forward expand fullscreen;
+
+@each $hover-icon in $hover-icons {
+  @media (-webkit-min-device-pixel-ratio: 1.1), (min-device-pixel-ratio: 1.1),  (min-resolution: 105dpi), (min-resolution: 1.1dppx) {
+    .#{$hover-icon}-icon {
+      background-image: url($pathToSpriteSVG);
+      background-size: $spriteWidth $spriteHeight;
+    }
+  }
+  .#{$hover-icon}-icon {
+    @extend .sprite_#{$hover-icon} !optional;
+    &:hover {
+      @extend .sprite_#{$hover-icon}-hover !optional;
+    }
+  }
+  a:hover .#{$hover-icon}-icon, a:focus .#{$hover-icon}-icon {
+    @extend .sprite_#{$hover-icon}-hover !optional;
+  }
+}
+
+$simple-icons: logo logo-en logo-small logo-small-en carousel-previous carousel-next;
+
+@each $simple-icon in $simple-icons {
+  @media (-webkit-min-device-pixel-ratio: 1.1), (min-device-pixel-ratio: 1.1),  (min-resolution: 105dpi), (min-resolution: 1.1dppx) {
+    .#{$simple-icon}-icon {
+      background-image: url($pathToSpriteSVG);
+      background-size: $spriteWidth $spriteHeight;
+    }
+  }
+  .#{$simple-icon}-icon {
+    @extend .sprite_#{$simple-icon};
+    margin-bottom: -1px;
+    margin-right: 5px;
+  }
+}
+
